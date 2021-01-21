@@ -18,6 +18,8 @@ Pages website will need:
     *CREATE review
     *EDIT/UPDATE review
     *DELETE review
+(maybe provide a navigation bar 'home, services, reviews/testimonials)
+(on top right maybe provide the Login/Signup/Log Out links)
 
 ROUTES: 
 *custom routes always go first 
