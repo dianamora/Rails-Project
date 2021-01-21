@@ -28,3 +28,32 @@ post '/signup' => 'users#create'
 resources :comments
 resources :users
 resources :posts
+
+MODELS & ASSOCIATIONS
+--User--
+has_many :reviews
+has_many :comments
+has_many :commented_reviews, through: :comments
+has_many :categories, through: :reviews
+-username
+-email
+-password_digest
+
+--Review--
+*can serve as the join table for categories and users
+belongs_to :user
+has_many :comments
+has_many :users, through: comments
+belongs_to :category
+-title
+-content
+
+--Comment--
+*will be the join table for users and reviews
+belongs_to :user
+belongs_to :post
+-content
+
+--Categories--
+has_many :reviews
+has_many :users, through: :reviews
