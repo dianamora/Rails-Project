@@ -1,0 +1,28 @@
+GABRIELLE EULA'S MAKEUP ARTIST PAGE
+
+Immediate goal for project requirements:
+-User can sign up/login
+-User will be able to write a review on the service received by MAKEUP
+-User will be able to leave comments on reviews
+-The application will focus on reviews users can make as well as the comments they can make on other reviews
+
+Stretch/Overall goal: 
+-Reviews will fall under a category service: Bridal, Modern Art, Eyelash Extensions, Special Occasion, and SFX
+
+Pages website will need: 
+-Home Page 
+-About Me Page (static) on the MUA (makeup artist)
+-Services Page (static)
+-User Signup/Login Page
+-User "Write a Review" Page
+    *CREATE review
+    *EDIT/UPDATE review
+    *DELETE review
+
+ROUTES: 
+*custom routes always go first 
+get '/signup' => 'users#new'
+post '/signup' => 'users#create'
+resources :comments
+resources :users
+resources :posts
