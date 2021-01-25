@@ -18,7 +18,7 @@ Rails.application.routes.draw do
   end
   
   resources :reviews do
-    resources :comments
+    resources :comments, only: [:new,:create,:index]
   end
   # resources :categories
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

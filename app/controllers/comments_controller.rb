@@ -12,7 +12,12 @@ def index
 end
 
 def new
-    @comment = Comment.new
+    if params[:review_id] && @review = Review.find_by_id(params[:post_id])
+        @comment = @review.comments.build
+    else
+        flash[:message] = "Review not found" 
+        @comment = Comment.new
+    end
 end
 
 def create
@@ -29,14 +34,23 @@ def show
 end
 
 def edit
-    @comment = Comment.find_by(id: [params:id])
+    @comment = Comment.find_by(id: params[:id])
 end
 
 def update
     @comment = Comment.find_by(id: params[:id])
-    if 
+    if @comment.update(comment_params)
+        redirect_to comment_path(@comment)
     else
+        render :edit
     end
+    
 end
+
+private
+
+    def comment_params
+        params.require(:comment).permit(:content, :post_id)
+    end
 
 end

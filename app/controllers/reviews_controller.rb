@@ -2,7 +2,11 @@ class ReviewsController < ApplicationController
     before_action :redirect_if_not_logged_in
 
     def new 
+        if params[:user_id] && @user = User.find_by_id(params[:user_id])
+            @review = @user.reviews.build
+        else
         @review = Review.new
+        end
     end
 
     def create 
@@ -15,7 +19,13 @@ class ReviewsController < ApplicationController
     end
 
     def index
-        @reviews = Review.all 
+        if params[:user_id] && @user = User.find_by_id(params[:user_id])
+        @review = @user.reviews
+        else
+            flash[:message] = "That review doesn't exist"
+            @reviews = Review.all
+        end
+
     end
 
     def show
