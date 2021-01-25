@@ -33,6 +33,19 @@ class ReviewsController < ApplicationController
         redirect_to reviews_path if !@review
     end
 
+    def edit 
+        @review = Review.find_by_id(params[:id])
+    end
+
+    def update
+        @review = Review.find_by_id(params[:id])
+        @review.update(review_params)
+        if @review.valid?
+            redirect_to reviews_path
+        else
+            render :edit
+        end
+    end
     private
 
     def review_params

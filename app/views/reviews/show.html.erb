@@ -6,7 +6,7 @@
 </div>
 
 <p><%= link_to 'See All Comments', review_comments_path(@review)%> </p>
-<p><%= link_to 'Add a Comment', new_review_comments(@review)%> </p>
+<p><%= link_to 'Add a Comment', new_review_comment_path(@review)%> </p>
 
 <h4>Comments:</h4>
 <% @review.comments.each do |c|%>

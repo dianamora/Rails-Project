@@ -57,3 +57,8 @@ belongs_to :post
 --Categories--
 has_many :reviews
 has_many :users, through: :reviews
+
+
+<% @reviews.each do |review| %>
+    <p><strong><%= review.title %></strong></p>
+    <p><%= review.content %></p>

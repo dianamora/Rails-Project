@@ -6,6 +6,8 @@ class User < ApplicationRecord
     #model but won't find it, raising an error
     has_secure_password #authenticate, validates pw
 
+    validates :username, :email, presence: true
+
     # has_many :categories, through: :reviews
 
   
