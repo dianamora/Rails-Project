@@ -7,8 +7,10 @@
 
 <p><%= link_to 'See All Comments', review_comments_path(@review)%> </p>
 <p><%= link_to 'Add a Comment', new_review_comment_path(@review)%> </p>
+<p><%= link_to 'Delete', review_path(@review), method: 'delete' %> </p>
+<p><%= link_to 'Edit', edit_review_path(@review)%> </p>
 
 <h4>Comments:</h4>
 <% @review.comments.each do |c|%>
-<li> <strong><%= c.user.username%></strong> says "<%= link_to c.content, review_comment_path(@review, c)%>"</li>
+<li> <strong><%= c.user.username%></strong> says "<%= link_to c.content, review_comments_path(@review, c)%>"</li>
 <% end %>

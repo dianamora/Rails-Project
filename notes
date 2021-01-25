@@ -62,3 +62,7 @@ has_many :users, through: :reviews
 <% @reviews.each do |review| %>
     <p><strong><%= review.title %></strong></p>
     <p><%= review.content %></p>
+
+
+<%= link_to "Sign Up", signup_path %>
+<%= link_to "Log In Here", login_path %>
