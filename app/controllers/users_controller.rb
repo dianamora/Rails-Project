@@ -20,6 +20,11 @@ class UsersController < ApplicationController
         redirect_to '/' if !@user #you want to redirct to a user never seens an error page if id not found
     end
 
+    def reviews
+        @user = User.find_by_id(params[:id])
+        @reviews = @user.reviews
+    end
+
     private
 
     def user_params

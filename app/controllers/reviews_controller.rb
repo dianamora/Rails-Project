@@ -20,7 +20,8 @@ class ReviewsController < ApplicationController
 
     def index
         if params[:user_id] && @user = User.find_by_id(params[:user_id])
-        @review = @user.reviews
+        @reviews = Review.all
+        #@user.reviews
         else
             flash[:message] = "That review doesn't exist"
             @reviews = Review.all
@@ -30,6 +31,7 @@ class ReviewsController < ApplicationController
 
     def show
         @review = Review.find_by_id(params[:id])
+        @comment = @review.comments
         redirect_to reviews_path if !@review
     end
 

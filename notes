@@ -66,3 +66,20 @@ has_many :users, through: :reviews
 
 <%= link_to "Sign Up", signup_path %>
 <%= link_to "Log In Here", login_path %>
+
+
+    <div>
+     <% if flash[:message] %>
+      <%= flash[:message] %>
+    <% end %>
+    </div>
+
+    <h1> Reviews </h1>
+
+<ul>
+    <% @reviews.each do |r| %>
+        <li> <%= link_to r.title, review_path(r) %> </li>
+    <% end %>
+</ul>
+   
+  

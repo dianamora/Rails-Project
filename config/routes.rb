@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   resources :comments
   
   resources :users do #NESTED ROUTES
-    resources :reviews, only: [ :new,:create,:index ]
+    resources :reviews, only: [ :new,:create,:index, :reviews ]
   end
   
   resources :reviews do
