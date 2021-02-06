@@ -2,28 +2,29 @@ class CommentsController < ApplicationController
     before_action :redirect_if_not_logged_in
 
 def index
-    if params[:review_id] && @review = Review.find_by_id(params[:review_id])
+    if params[:review_id] && @review = Review.find_by_id(params[:review_id]) #if it's nested...do the following:
         @comments = @review.comments
     else
-        flash[:message] = "Sorry, no review found."
+        @error = "Sorry, no review found." if params[:review_id]
         @comments = Comment.all
      end
-    
 end
 
 def new
-    if params[:review_id] && @review = Review.find_by_id(params[:post_id])
-        @comment = @review.comments.build
+    if params[:review_id] && @review = Review.find_by_id(params[:review_id])
+         @comment = @review.comments.build
     else
-        flash[:message] = "Review not found" 
+        @error = "Review not found" if !params[:review_id]
         @comment = Comment.new
     end
 end
 
 def create
     @comment = current_user.comments.build(comment_params)
+    @review = Review.find_by_id(params[:review_id])
+    # binding.pry
     if @comment.save
-        redirect_to comments_path
+        redirect_to comments_review_path(@review)
     else
         render :new
     end
@@ -31,6 +32,7 @@ end
 
 def show
     @comment = Comment.find_by(id: params[:id])
+  
 end
 
 def edit
@@ -50,7 +52,7 @@ end
 private
 
     def comment_params
-        params.require(:comment).permit(:content, :post_id)
+        params.require(:comment).permit(:content, :review_id, :user_id)
     end
 
 end

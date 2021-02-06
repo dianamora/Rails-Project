@@ -19,7 +19,7 @@ class ReviewsController < ApplicationController
     end
 
     def index
-        if params[:user_id] && @user = User.find_by_id(params[:user_id])
+         if current_user #params[:user_id] && @user = User.find_by_id(params[:user_id])
         @reviews = Review.all
         #@user.reviews
         else
