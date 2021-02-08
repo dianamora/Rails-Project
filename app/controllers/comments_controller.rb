@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-    before_action :redirect_if_not_logged_in
+    before_action :redirect_if_not_logged_in, :current_user
 
 def index
     if params[:review_id] && @review = Review.find_by_id(params[:review_id]) #if it's nested...do the following:
@@ -21,10 +21,10 @@ end
 
 def create
     @comment = current_user.comments.build(comment_params)
-    @review = Review.find_by_id(params[:review_id])
+    # @review = Review.find_by_id(params[:review_id])
     # binding.pry
     if @comment.save
-        redirect_to comments_review_path(@review)
+        redirect_to reviews_path(@review)
     else
         render :new
     end

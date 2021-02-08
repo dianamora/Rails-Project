@@ -81,5 +81,7 @@ has_many :users, through: :reviews
         <li> <%= link_to r.title, review_path(r) %> </li>
     <% end %>
 </ul>
+
+<p><%= link_to 'See All Comments', review_comments_path(@review)%> </p> 
    
   

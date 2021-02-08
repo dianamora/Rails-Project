@@ -4,6 +4,9 @@ class UsersController < ApplicationController
         @user = User.new
     end
 
+    def index
+    end
+
     def create #if info saves successfully, log my user in and redirect to show page
         @user = User.new(user_params)
         if @user.save

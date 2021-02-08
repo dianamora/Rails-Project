@@ -5,7 +5,7 @@
     <%= @review.content %>
 </div>
 
-<p><%= link_to 'See All Comments', review_comments_path(@review)%> </p> 
+
 <p><%= link_to 'Add a Comment', new_review_comment_path(@review)%> </p>
 <p><%= link_to 'Delete', review_path(@review), method: 'delete' %> </p>
 <p><%= link_to 'Edit', edit_review_path(@review)%> </p>

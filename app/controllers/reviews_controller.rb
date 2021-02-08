@@ -1,5 +1,5 @@
 class ReviewsController < ApplicationController
-    before_action :redirect_if_not_logged_in
+    before_action :redirect_if_not_logged_in, :current_user, only: [:edit, :update, :destroy]
 
     def new 
         if params[:user_id] && @user = User.find_by_id(params[:user_id])
@@ -18,15 +18,18 @@ class ReviewsController < ApplicationController
         end
     end
 
+
     def index
-         if current_user #params[:user_id] && @user = User.find_by_id(params[:user_id])
-        @reviews = Review.all
-        #@user.reviews
+        #  if current_user #params[:user_id] && @user = User.find_by_id(params[:user_id])
+        # @reviews = Review.all
+        # #@user.reviews
+        # else
+        if params[:user_id] && @user = User.find_by_id(params[:user_id])
+            @reviews = @user.reviews
         else
-            flash[:message] = "That review doesn't exist"
+            flash[:message] = "User did not write this review" if params[:user_id]
             @reviews = Review.all
         end
-
     end
 
     def show
