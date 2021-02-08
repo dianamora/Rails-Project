@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
   root "sessions#home"
   #custom routes go first, because if not /:id will get read first and raise an error
+  
   get '/signup' => 'users#new'
   post '/signup' => 'users#create'
+  match '/auth/:google_oauth2/callback' => 'sessions#omniauth', via: [:get, :post]
 
   #login route
   get '/login' => 'sessions#new'

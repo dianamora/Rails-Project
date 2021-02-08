@@ -4,3 +4,9 @@
 <br>
 <br>
 <%= @comment.content %>
+
+<% if current_user == @comment.user %>
+
+<p><%= link_to 'Delete', comment_path(@comment), method: 'delete' %> </p>
+
+<% end %>

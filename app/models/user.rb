@@ -10,5 +10,14 @@ class User < ApplicationRecord
 
     # has_many :categories, through: :reviews
 
+    def self.create_from_omniauth(auth)
+        self.find_or_create_by(uid: auth['uid'], provider: auth['provider']) do |u|
+            if u.username != auth['info']['name']
+                hash = {username: auth['info']['name'], email: auth['info']['email'], password: SecureRandom.hex(16)}
+                u.update(hash)
+            end 
+        end
+    end
+
   
 end

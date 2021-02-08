@@ -40,6 +40,9 @@ class ReviewsController < ApplicationController
 
     def edit 
         @review = Review.find_by_id(params[:id])
+        if current_user != @review.user
+            redirect_to '/reviews'
+        end
     end
 
     def update

@@ -49,6 +49,12 @@ def update
     
 end
 
+def destroy
+    @comment = Comment.find_by_id(params[:id])
+    @comment.destroy
+    redirect_to reviews_path
+end
+
 private
 
     def comment_params
