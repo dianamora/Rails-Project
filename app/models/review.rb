@@ -13,3 +13,6 @@ scope :most_comments, -> {left_joins(:comments).group('posts.id').order('count
 
 
 end
+
+#Create a new page where the user who's left the most reviews is displayed
+#show the user's name "our top contributor and the number of reviews"

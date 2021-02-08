@@ -60,6 +60,8 @@ class ReviewsController < ApplicationController
         @review.destroy
         redirect_to reviews_path
     end
+
+
     private
 
     def review_params
