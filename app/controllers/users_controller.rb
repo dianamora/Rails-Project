@@ -27,12 +27,9 @@ class UsersController < ApplicationController
 
     def reviews
         @user = User.find_by_id(params[:id])
-        @reviews = @user.reviews
+        @reviews = @user.reviews.published
     end
     
-   def top_reviewer
-    
-   end
 
     private
 

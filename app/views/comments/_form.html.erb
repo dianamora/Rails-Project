@@ -1,0 +1,15 @@
+<%= form_for([@review, @comment]) do |f| %>
+
+    <% if !@review %>
+     <%= f.label :review %>
+     <%= f.collection_select :review_id, Review.all, :id, :title %>
+    <% else %>
+       <%= f.hidden_field :review_id %>
+     <% end %>
+ 
+     <%= f.label :content%>
+     <%= f.text_field :content%>
+ 
+     <%= f.submit %>
+ 
+     <% end %>

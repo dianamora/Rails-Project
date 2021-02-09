@@ -84,4 +84,18 @@ has_many :users, through: :reviews
 
 <p><%= link_to 'See All Comments', review_comments_path(@review)%> </p> 
    
-  
+  <h1>Edit Comment</h1>
+
+<%= render partial: "layouts/errors", locals: {object: @comment} %>
+
+<%= form_for(@comment) do |f| %>
+
+    <%= f.label :review %>
+    <%= f.collection_select :post_id, Review.all, :id, :title %>
+
+    <%= f.label :content %>
+    <% f.text_field :content %>
+
+    <%= f.submit %>
+
+    <% end %>

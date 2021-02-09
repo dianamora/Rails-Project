@@ -16,7 +16,7 @@ def new
     if params[:review_id] && @review
          @comment = @review.comments.build
     else
-        @error = "Review not found" if !params[:review_id]
+       
         @comment = Comment.new
     end
 end

@@ -23,10 +23,10 @@ class ReviewsController < ApplicationController
     def index
         @user = User.find_by_id(params[:user_id])
         if params[:user_id] && @user == current_user
-            @reviews = @user.reviews
+            @reviews = @user.reviews.published
         else
             @error = "User did not write this review" if params[:user_id]
-            @reviews = Review.all
+            @reviews = Review.all.published
         end
     end
 
@@ -58,6 +58,10 @@ class ReviewsController < ApplicationController
         redirect_to reviews_path
     end
 
+    def top_reviewer
+        # @user = current_user
+        # @reviews = @user.reviews.most_reviews
+    end
 
     private
 
