@@ -16,3 +16,4 @@ end
 
 #Create a new page where the user who's left the most reviews is displayed
 #show the user's name "our top contributor and the number of reviews"
+#scope method will go here

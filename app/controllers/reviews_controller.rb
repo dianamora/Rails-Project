@@ -1,8 +1,9 @@
 class ReviewsController < ApplicationController
-    before_action :redirect_if_not_logged_in, :current_user, only: [:edit, :update, :destroy]
+    before_action :redirect_if_not_logged_in
 
     def new 
-        if params[:user_id] && @user = User.find_by_id(params[:user_id])
+        @user = User.find_by_id(params[:user_id])
+        if params[:user_id] && @user 
             @review = @user.reviews.build
         else
         @review = Review.new
@@ -20,21 +21,17 @@ class ReviewsController < ApplicationController
 
 
     def index
-        #  if current_user #params[:user_id] && @user = User.find_by_id(params[:user_id])
-        # @reviews = Review.all
-        # #@user.reviews
-        # else
-        if params[:user_id] && @user = User.find_by_id(params[:user_id])
+        @user = User.find_by_id(params[:user_id])
+        if params[:user_id] && @user == current_user
             @reviews = @user.reviews
         else
-            flash[:message] = "User did not write this review" if params[:user_id]
+            @error = "User did not write this review" if params[:user_id]
             @reviews = Review.all
         end
     end
 
     def show
         @review = Review.find_by_id(params[:id])
-        @comment = @review.comments
         redirect_to reviews_path if !@review
     end
 
@@ -47,8 +44,8 @@ class ReviewsController < ApplicationController
 
     def update
         @review = Review.find_by_id(params[:id])
-        @review.update(review_params)
-        if @review.valid?
+        
+        if @review.update(review_params)
             redirect_to reviews_path
         else
             render :edit

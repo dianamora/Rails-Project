@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
     private
     def current_user
         @current_user ||= User.find_by_id(session[:user_id]) if session[:user_id]
-         #if current user is already defined then it'll equal current user if not it'll find by id
+        
 
     end
 

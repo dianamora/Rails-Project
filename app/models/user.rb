@@ -20,4 +20,9 @@ class User < ApplicationRecord
     end
 
   
+#scope method for user with the most reviews
+scope :alpha, -> { order(:title) }
+scope :most_reviews, -> {left_joins(:reviews).group('reviews.id').order('count
+(reviews.user_id)desc')}
+
 end

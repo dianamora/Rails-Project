@@ -6,22 +6,23 @@ class UsersController < ApplicationController
     end
 
     def index
+
     end
 
-    def create #if info saves successfully, log my user in and redirect to show page
+    def create 
         @user = User.new(user_params)
         if @user.save
             session[:user_id] = @user.id
             redirect_to @user
         else
-            render :new #take them back to the sign up page if info doesn't save
+            render :new 
         end
     end
 
     def show
-        redirect_if_not_logged_in  #method from app controller
-        @user = User.find_by_id(params[:id]) #.find will throw an error if it doesn't find soemething, .find_by will return 'nil'
-        redirect_to '/' if !@user #you want to redirct to a user never seens an error page if id not found
+        redirect_if_not_logged_in 
+        @user = User.find_by_id(params[:id]) 
+        redirect_to '/' if !@user 
     end
 
     def reviews
@@ -29,7 +30,9 @@ class UsersController < ApplicationController
         @reviews = @user.reviews
     end
     
-   
+   def top_reviewer
+    
+   end
 
     private
 

@@ -1,8 +1,6 @@
 class SessionsController < ApplicationController
     
 
-    def home #technically do not need this unless you are setting a new thing in the controller
-    end
 
     def destroy
         session.clear
@@ -44,17 +42,6 @@ def auth
     request.env['omniauth.auth']
 end
 
-    # def omniauth
-    #     user = User.create_from_omniauth(auth)
-    #     if user.valid?
-    #         session[:current_user_id] = user.id
-    #         flash[:message] = "You have successfully signed in with Google Oauth"
-    #         redirect_to user_path(user)
-    #     else
-    #         flash[:message] = user.errors.full_messages.join(", ")
-    #         redirect_to "/"
-    #     end
-    # end 
 
 
 end
